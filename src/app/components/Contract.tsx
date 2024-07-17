@@ -7,7 +7,7 @@ import StepFour from "./StepFour";
 import { AreasT, DatosContrato, ModalidadT } from "../types";
 import Image from "next/image";
 
-// const imagePrefix = `${process.env.NEXT_PUBLIC_IMAGE_PREFIX}`;
+const imagePrefix = `${process.env.NEXT_PUBLIC_IMAGE_PREFIX}`;
 const Contract: React.FC = () => {
   const [step, setStep] = useState(1);
 
@@ -132,7 +132,7 @@ const Contract: React.FC = () => {
     <main>
       <Image
         alt="logo"
-        src={"/logo.png"}
+        src={`${imagePrefix}logo.png`}
         width={400}
         height={100}
         className="logo"
