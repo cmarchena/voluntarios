@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { DatosContrato } from "../types";
+import { v4 as uuidv4 } from "uuid";
 
 interface StepFourProps {
   contractData: DatosContrato;
@@ -26,13 +27,13 @@ const StepFour: React.FC<StepFourProps> = ({ contractData }) => {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-
+      /* 
       const data = await response.json();
       console.log({ data });
       // Create a link element to initiate the download
       const link = document.createElement("a");
       link.href = data.url;
-      link.setAttribute("download", "contract.pdf");
+      link.setAttribute("download", `${data.url}.pdf`);
       link.setAttribute("target", "_blank");
 
       // Append the link to the body and click it programmatically
@@ -40,7 +41,16 @@ const StepFour: React.FC<StepFourProps> = ({ contractData }) => {
       link.click();
 
       // Clean up
-      link.remove();
+      link.remove(); */
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", `contrato${uuidv4()}.pdf`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     } catch (error) {
       console.error("Error downloading PDF:", error);
       alert(error);

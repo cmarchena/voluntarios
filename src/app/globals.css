@@ -85,7 +85,7 @@ body {
   overflow-x: hidden;
 }
 main {
-  padding: 0.5rem;
+  padding: 0.3rem;
 }
 .contract-wizard {
   background-color: lightblue;
@@ -236,7 +236,7 @@ a {
     margin-inline-end: 0.5rem;
   }
 }
-@media screen and (min-width: 321px) {
+@media screen and (min-width: 400px) {
   main {
     max-width: 600px;
     margin: 0 auto;
