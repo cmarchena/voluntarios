@@ -103,9 +103,13 @@ const StepTwo: React.FC<StepTwoProps> = ({
           }}
         />
       </div>
-      <button onClick={handleClear}>Reiniciar firma</button>
-      <button onClick={prevStep}>Volver</button>
-      <button onClick={handleNext}>Siguiente</button>
+      <div className="buttons">
+        <button onClick={handleClear}>Reiniciar firma</button>
+        <br />
+        <br />
+        <button onClick={prevStep}>{"<"} Volver</button>
+        <button onClick={handleNext}>Siguiente {">"}</button>
+      </div>
     </div>
   );
 };

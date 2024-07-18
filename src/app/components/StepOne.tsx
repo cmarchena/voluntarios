@@ -345,7 +345,9 @@ const StepOne: React.FC<StepOneProps> = ({
             <label htmlFor="ind">Indistintamente</label>
           </div>
         </section>
-        <button type="submit">Siguiente</button>
+        <div className="buttons">
+          <button type="submit">Siguiente {">"}</button>
+        </div>
       </form>
     </div>
   );

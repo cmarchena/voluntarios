@@ -227,6 +227,15 @@ button {
   max-width: 400px;
   height: auto;
 }
+a {
+  margin-inline-start: 0.5rem;
+}
+.buttons {
+  margin-block-start: 1rem;
+  > * {
+    margin-inline-end: 0.5rem;
+  }
+}
 @media screen and (min-width: 321px) {
   main {
     max-width: 600px;

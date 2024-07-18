@@ -1,11 +1,10 @@
-
 import React, { useState } from "react";
 import { DatosContrato } from "../types";
 
 interface StepFourProps {
   contractData: DatosContrato;
 }
-const HOST = process.env.NEXT_PUBLIC_API_URL
+const HOST = process.env.NEXT_PUBLIC_API_URL;
 const StepFour: React.FC<StepFourProps> = ({ contractData }) => {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -19,7 +18,11 @@ const StepFour: React.FC<StepFourProps> = ({ contractData }) => {
         },
         body: JSON.stringify(contractData),
       });
-
+      if (response.status === 400) {
+        throw new Error(
+          "No se puede generar dos veces el mismo contrato para el mismo DNI/NIE. Recarga para intentar con otro DNI/NIE"
+        );
+      }
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -40,7 +43,7 @@ const StepFour: React.FC<StepFourProps> = ({ contractData }) => {
       link.remove();
     } catch (error) {
       console.error("Error downloading PDF:", error);
-      alert("An error occurred while downloading the PDF. Please try again.");
+      alert(error);
     } finally {
       setIsLoading(false);
     }

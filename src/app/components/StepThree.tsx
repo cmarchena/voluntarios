@@ -1,7 +1,6 @@
 import React from "react";
 import { DatosContrato } from "../types";
 import Link from "next/link";
-import { AreasT } from "../types";
 
 interface StepThreeProps {
   contractData: DatosContrato;
@@ -69,8 +68,10 @@ const StepThree: React.FC<StepThreeProps> = ({
           </Link>
         </label>
       </div>
-      <button onClick={prevStep}>Volver</button>
-      <button onClick={handleSubmit}>Enviar contrato</button>
+      <div className="buttons">
+        <button onClick={prevStep}>{"<"} Volver</button>
+        <button onClick={handleSubmit}>Enviar contrato</button>
+      </div>
     </div>
   );
 };

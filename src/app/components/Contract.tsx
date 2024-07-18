@@ -6,6 +6,7 @@ import StepThree from "./StepThree";
 import StepFour from "./StepFour";
 import { AreasT, DatosContrato, ModalidadT } from "../types";
 import Image from "next/image";
+const HOST = process.env.NEXT_PUBLIC_API_URL;
 
 const imagePrefix = `${process.env.NEXT_PUBLIC_IMAGE_PREFIX}`;
 const Contract: React.FC = () => {
@@ -84,8 +85,20 @@ const Contract: React.FC = () => {
 
   const handleSubmit = async () => {
     try {
-      const result = await mockApiCall(datosContrato);
-      console.log("Contract submitted successfully:", result);
+      const response = await fetch(`${HOST}/api/volunteer`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(datosContrato),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log({ data });
       nextStep();
     } catch (error) {
       console.error("Error submitting contract:", error);
